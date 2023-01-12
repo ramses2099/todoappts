@@ -28,3 +28,9 @@ module.exports = {
 
 ## Install extension
 Tailwind CSS IntelliSense
+
+## Install react icons
+npm install react-icons --save
+
+## Instlla Plugin @tailwindcss/forms
+npm install @tailwindcss/forms
