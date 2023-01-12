@@ -1,19 +1,30 @@
 import { useState } from "react";
+import InputField from "./components/InputField";
+import { Todo } from "./model";
 
-function App() {
-  const [count, setCount] = useState(0);
+const App: React.FC = () => {
+  const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const handleAdd = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (todo) {
+      setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
+      setTodo("");
+    }
+  };
 
   return (
     // content wrapper
-    <div className="container">
-     <form>
-      <div className="space-x-1 mt-5 px-5">
-        <div className="inline-block"><input type="text" className="border h-16"/></div>
-        <div className="inline-block"><button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold border rounded-xl h-16 w-32">Add Todo</button></div>
+    <div className="flex flex-col">
+      <div className="bg-blue-400 py-3 text-center">
+        <p className="text-white font-bold text-lg uppercase">taskify</p>
       </div>
-     </form>
+      <div>
+        <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
